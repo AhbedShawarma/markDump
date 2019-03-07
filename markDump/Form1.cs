@@ -48,7 +48,9 @@ namespace markDump
 
         public void OpenFile()
         {
-            //Excel 
+            Excel excel = new Excel(@"C:\Users\qazth\OneDrive\Documents\School Work\comp sci\markDump\markDump\Test.xlsx", 1);
+
+            MessageBox.Show(excel.ReadCell(0, 0));
         }
     }
 }

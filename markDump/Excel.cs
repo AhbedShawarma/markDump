@@ -21,7 +21,6 @@ public class Excel
         this.path = path;
         wb = excel.Workbooks.Open(path);
         ws = wb.Worksheets[Sheet];
-
     }
 
     public string ReadCell(int i, int j)
@@ -29,17 +28,10 @@ public class Excel
         i++;
         j++;
         if (ws.Cells[i, j].Value2 != null)
-        {
             return ws.Cells[i, j].Value2;
-        }
         else
-        {
             return "";
-        }
     }
-
-
-
 }
 
 
