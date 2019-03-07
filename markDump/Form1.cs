@@ -11,7 +11,7 @@ using System.IO;
 using ExcelDataReader;
 using Microsoft.Office.Interop.Excel;
 using _Excel = Microsoft.Office.Interop.Excel;
-
+using Microsoft.VisualBasic;
 namespace markDump
 {
     public partial class Form1 : Form
@@ -48,9 +48,14 @@ namespace markDump
 
         public void OpenFile()
         {
-            Excel excel = new Excel(@"C:\Users\qazth\OneDrive\Documents\School Work\comp sci\markDump\markDump\Test.xlsx", 1);
 
             MessageBox.Show(excel.ReadCell(0, 0));
+        }
+
+        private void btnAddMark_Click(object sender, EventArgs e)
+        {
+            string studentName = Interaction.InputBox("Enter Student Name:");
+            string studentMark = Interaction.InputBox("Enter Student Mark:");
         }
     }
 }
