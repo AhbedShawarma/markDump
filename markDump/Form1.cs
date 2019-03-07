@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -22,6 +22,8 @@ namespace markDump
         string fileName;
         string studentName;
         int studentMark;
+        double culmMark;
+        ArrayList strands = new ArrayList();
          
         public Form1()
         {
@@ -31,7 +33,7 @@ namespace markDump
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
             studentName = Interaction.InputBox("What is the student's name?");
-            WriteData(studentName);
+            WriteData(studentName, 0, 0);
         }
 
         private void btnFileOpen_Click(object sender, EventArgs e)
@@ -55,9 +57,9 @@ namespace markDump
             this.Close();
         }
 
-        public void WriteData(string input)
+        public void WriteData(string input, int x, int y)
         {
-            excel.WriteToCell(0, 0, input);
+            excel.WriteToCell(x, y, input);
             excel.Save();
             MessageBox.Show(excel.ReadCell(0, 0));
 
@@ -66,20 +68,80 @@ namespace markDump
         private void btnAddMark_Click(object sender, EventArgs e)
         {
             studentName = Interaction.InputBox("Enter Student Name:");
-            string strand = Interaction.InputBox("Enter Strand Name:");
-            string strandEx = Interaction.InputBox("Enter Expectation Name:");
-            studentMark = int.Parse(Interaction.InputBox("Enter Student Mark:"));
+            string strandName = Interaction.InputBox("Enter Strand Name:");
+            string expectationName = Interaction.InputBox("Enter Expectation Name:");
+            double mark = double.Parse(Interaction.InputBox("Enter Assignment Mark:"));
+            double weight = double.Parse(Interaction.InputBox("Enter Mark Weight:"));
 
+            Strand strandUsed = new Strand("", 0);
+
+            foreach (Strand s in strands)
+            {
+                if (s.name == strandName)
+                {
+                    strandUsed = s;
+                    break;
+                }
+            }
+
+            Expectation exUsed = new Expectation("", 0);
+
+            foreach (Expectation ex in strandUsed.expectationList)
+            {
+                if (ex.name == expectationName)
+                {
+                    exUsed = ex;
+                    break;
+                }
+            }
+
+            exUsed.assignmentList.Add(new Assignment(mark, weight));
         }
 
         private void btnAddStrand_Click(object sender, EventArgs e)
         {
+            string tempName = Interaction.InputBox("Enter Strand Name:");
+            double tempWeight = double.Parse(Interaction.InputBox("Enter Strand Weight:"));
 
+            //strands.Add(new Strand(tempName, tempWeight));
         }
 
         private void btnAddExpectation_Click(object sender, EventArgs e)
         {
+            string strandName = Interaction.InputBox("Enter Strand Name:");
 
+            Strand strandUsed = new Strand("", 0);
+
+            foreach (Strand s in strands)
+            {
+                if (s.name == strandName)
+                {
+                    strandUsed = s;
+                    break;
+                }
+            }
+
+            string tempName = Interaction.InputBox("Enter Expectation Name:");
+            double tempWeight = double.Parse(Interaction.InputBox("Enter Expectation Weight:"));
+            strandUsed.expectationList.Add(new Expectation(tempName, tempWeight));
+        }       
+
+        private void btnCulm_Click(object sender, EventArgs e)
+        {
+            culmMark = double.Parse(Interaction.InputBox("Enter Culminating Mark:")) * 0.3;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            double courseMark = 0;
+            foreach (Strand s in strands)
+            {
+                courseMark += s.CalculateMark() * s.weight * 0.7;
+            }
+
+            double finalMark = courseMark + culmMark;
+
+            WriteData(finalMark + "", 0, 1);
         }
     }
 }
