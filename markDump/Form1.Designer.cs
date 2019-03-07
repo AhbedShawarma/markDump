@@ -47,6 +47,7 @@
             this.btnAddStrand.TabIndex = 0;
             this.btnAddStrand.Text = "Add Strand";
             this.btnAddStrand.UseVisualStyleBackColor = true;
+            this.btnAddStrand.Click += new System.EventHandler(this.btnAddStrand_Click);
             // 
             // btnAddStudent
             // 
@@ -95,6 +96,7 @@
             this.btnAddExpectation.TabIndex = 5;
             this.btnAddExpectation.Text = "Add Expectation";
             this.btnAddExpectation.UseVisualStyleBackColor = true;
+            this.btnAddExpectation.Click += new System.EventHandler(this.btnAddExpectation_Click);
             // 
             // dataSheet
             // 

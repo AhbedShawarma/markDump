@@ -12,13 +12,17 @@ using ExcelDataReader;
 using Microsoft.Office.Interop.Excel;
 using _Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.VisualBasic;
+
 namespace markDump
 {
     public partial class Form1 : Form
     {
         //DataSet result;
         Excel excel;
-
+        string fileName;
+        string studentName;
+        int studentMark;
+         
         public Form1()
         {
             InitializeComponent();
@@ -26,33 +30,23 @@ namespace markDump
 
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
-            //studentName = 
+            studentName = Interaction.InputBox("What is the student's name?");
+            WriteData(studentName);
         }
 
         private void btnFileOpen_Click(object sender, EventArgs e)
         {
-            OpenFile();
-   
-            //using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Excel Workbook *.xls", ValidateNames = true })
-            //{
-            //    if (ofd.ShowDialog() == DialogResult.OK)
-            //    {
-            //        FileStream fs = File.Open(ofd.FileName, FileMode.Open, FileAccess.Read);
-            //        IExcelDataReader reader = ExcelReaderFactory.CreateBinaryReader(fs);
-            //        reader.IsFirstRowAsColumnNames = true;
-            //    }
-            //}
+            fileName = Interaction.InputBox("What is the file name?");
+            OpenFile(fileName);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
         }
 
-        public void OpenFile()
+        public void OpenFile(string name)
         {
-            excel = new Excel(@"\Test.xlsx", 1);
-
-            MessageBox.Show(excel.ReadCell(0, 0));
+            excel = new Excel(@"C:\Users\qazth\OneDrive\Documents\School Work\comp sci\markDump\markDump\" + name + ".xlsx", 1);
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
@@ -61,16 +55,31 @@ namespace markDump
             this.Close();
         }
 
-        public void WriteData()
+        public void WriteData(string input)
         {
-            excel.WriteToCell(0, 0, "Bob");
+            excel.WriteToCell(0, 0, input);
             excel.Save();
+            MessageBox.Show(excel.ReadCell(0, 0));
+
         }
 
         private void btnAddMark_Click(object sender, EventArgs e)
         {
-            string studentName = Interaction.InputBox("Enter Student Name:");
-            string studentMark = Interaction.InputBox("Enter Student Mark:");
+            studentName = Interaction.InputBox("Enter Student Name:");
+            string strand = Interaction.InputBox("Enter Strand Name:");
+            string strandEx = Interaction.InputBox("Enter Expectation Name:");
+            studentMark = int.Parse(Interaction.InputBox("Enter Student Mark:"));
+
+        }
+
+        private void btnAddStrand_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddExpectation_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
