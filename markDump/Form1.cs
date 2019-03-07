@@ -11,7 +11,7 @@ using System.IO;
 using ExcelDataReader;
 using Microsoft.Office.Interop.Excel;
 using _Excel = Microsoft.Office.Interop.Excel;
-
+using Microsoft.VisualBasic;
 namespace markDump
 {
     public partial class Form1 : Form
@@ -67,5 +67,10 @@ namespace markDump
             excel.Save();
         }
 
+        private void btnAddMark_Click(object sender, EventArgs e)
+        {
+            string studentName = Interaction.InputBox("Enter Student Name:");
+            string studentMark = Interaction.InputBox("Enter Student Mark:");
+        }
     }
 }

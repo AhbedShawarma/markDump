@@ -85,6 +85,7 @@
             this.btnAddMark.TabIndex = 4;
             this.btnAddMark.Text = "Add Mark";
             this.btnAddMark.UseVisualStyleBackColor = true;
+            this.btnAddMark.Click += new System.EventHandler(this.btnAddMark_Click);
             // 
             // btnAddExpectation
             // 
