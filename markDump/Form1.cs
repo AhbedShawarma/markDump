@@ -17,6 +17,7 @@ namespace markDump
     public partial class Form1 : Form
     {
         //DataSet result;
+        Excel excel;
 
         public Form1()
         {
@@ -30,6 +31,8 @@ namespace markDump
 
         private void btnFileOpen_Click(object sender, EventArgs e)
         {
+            OpenFile();
+   
             //using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "Excel Workbook *.xls", ValidateNames = true })
             //{
             //    if (ofd.ShowDialog() == DialogResult.OK)
@@ -43,14 +46,26 @@ namespace markDump
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            OpenFile();
         }
 
         public void OpenFile()
         {
-            Excel excel = new Excel(@"C:\Users\qazth\OneDrive\Documents\School Work\comp sci\markDump\markDump\Test.xlsx", 1);
+            excel = new Excel(@"\Test.xlsx", 1);
 
             MessageBox.Show(excel.ReadCell(0, 0));
         }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+            excel.ExcelClose();
+            this.Close();
+        }
+
+        public void WriteData()
+        {
+            excel.WriteToCell(0, 0, "Bob");
+            excel.Save();
+        }
+
     }
 }

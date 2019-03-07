@@ -35,6 +35,7 @@
             this.btnAddMark = new System.Windows.Forms.Button();
             this.btnAddExpectation = new System.Windows.Forms.Button();
             this.dataSheet = new System.Windows.Forms.DataGridView();
+            this.btnEnd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataSheet)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,11 +103,22 @@
             this.dataSheet.Size = new System.Drawing.Size(776, 251);
             this.dataSheet.TabIndex = 6;
             // 
+            // btnEnd
+            // 
+            this.btnEnd.Location = new System.Drawing.Point(317, 386);
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Size = new System.Drawing.Size(153, 52);
+            this.btnEnd.TabIndex = 7;
+            this.btnEnd.Text = "End";
+            this.btnEnd.UseVisualStyleBackColor = true;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnEnd);
             this.Controls.Add(this.dataSheet);
             this.Controls.Add(this.btnAddExpectation);
             this.Controls.Add(this.btnAddMark);
@@ -131,6 +143,7 @@
         private System.Windows.Forms.Button btnAddMark;
         private System.Windows.Forms.Button btnAddExpectation;
         private System.Windows.Forms.DataGridView dataSheet;
+        private System.Windows.Forms.Button btnEnd;
     }
 }
 

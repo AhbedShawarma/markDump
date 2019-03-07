@@ -32,6 +32,28 @@ public class Excel
         else
             return "";
     }
+
+    public void WriteToCell(int i, int j, string s)
+    {
+        i++;
+        j++;
+        ws.Cells[i, j].Value2 = s;
+    }
+
+    public void SaveAs(string path)
+    {
+        wb.SaveAs(path);
+    }
+
+    public void Save()
+    {
+        wb.Save();
+    }
+
+    public void ExcelClose()
+    {
+        wb.Close();
+    }
 }
 
 
